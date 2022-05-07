@@ -1,0 +1,41 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /test_db
+  datasource:
+    url: jdbc:h2:file:~/workspace/test_db/db;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: testdb
+    password: 1234ee
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  config:
+    activate:
+      on-profile:
+
+logging:
+  level:
+    root: info
+    jdbc:
+      sqlonly: info
+      sqltiming: off
+      audit: off
+      resultset: off
+      resultsettable: off
+      connection: off
+server:
+  port: 8080
+---
+spring:
+  profiles: dev
+server:
+  port: 8081
+
+---
+spring:
+  profiles: real
+server:
+  port: 80
